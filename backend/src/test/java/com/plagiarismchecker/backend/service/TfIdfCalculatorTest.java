@@ -40,4 +40,22 @@ class TfIdfCalculatorTest {
 
         assertEquals(List.of(), result);
     }
+
+    @Test
+    void shouldGiveNonZeroWeightsForIdenticalDocuments() {
+
+        List<List<String>> documents = List.of(
+            List.of("java", "programming", "java"),
+            List.of("java", "programming", "java")
+    );
+
+        List<Map<String, Double>> result =
+            calculator.calculateTfIdf(documents);
+
+        assertTrue(result.get(0).get("java") > 0);
+        assertTrue(result.get(0).get("programming") > 0);
+
+        assertTrue(result.get(1).get("java") > 0);
+        assertTrue(result.get(1).get("programming") > 0);
+    }
 }

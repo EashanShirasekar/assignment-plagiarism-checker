@@ -74,8 +74,8 @@ public class TfIdfCalculator {
             int documentCount = documentFrequency.get(word);
 
             double idf = Math.log(
-                    (double) totalDocuments / documentCount
-            );
+                ((double) totalDocuments + 1) / (documentCount + 1)
+            ) + 1;
 
             double tfIdf = tf * idf;
 
